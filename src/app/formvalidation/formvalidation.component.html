@@ -1,0 +1,85 @@
+<div class="container">
+  <div class="row">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="text-center">Form validation</h5>
+      </div>
+      <div class="card-body">
+
+          <form name="form" [formGroup]="form" (ngSubmit)="form.valid && onSubmit()"> 
+
+              <div class="form-group">
+
+                <label for="firstName">First name:</label>
+                <input type="text"
+                class="form-control"
+                id="firstName"
+                formControlName="firstName"
+                [ngClass]="{'is-invalid':form.get('firstName').touched && form.get('firstName').invalid}">
+
+                <div class="invalid-feedback">
+                  <div>First name is required</div>
+                </div>
+
+              </div>
+
+              <div class="form-group">
+
+                <label for="lastName">Last name:</label>
+                <input type="text" class="form-control"
+                id="lastName"
+                formControlName="lastName"
+                [ngClass]="{'is-invalid':form.get('lastName').touched && form.get('lastName').invalid}">
+
+                <div class="invalid-feedback">
+                  <div>Last name is required</div>
+                </div>
+
+              </div>
+
+              <div class="form-group">
+
+                <label for="email">Email:</label>
+                <input type="text" class="form-control"
+                id="email"
+                formControlName="email"
+                [ngClass]="{'is-invalid':form.get('email').touched && form.get('email').invalid}">
+
+                <div *ngIf="form.get('email').touched && form.get('email').invalid" class="invalid-feedback">
+                  <div *ngIf="form.get('email').errors.required">Email is required</div>
+                  <div *ngIf="form.get('email').errors.email">Email must be a valid email address</div>
+                </div>
+
+              </div>
+
+              <div class="form-group">
+
+                <label for="password">Password:</label>
+                <input type="password" class="form-control"
+                id="password"
+                formControlName="password"
+                [ngClass]="{'is-invalid':form.get('password').touched && form.get('password').invalid}">
+
+                <div *ngIf="form.get('password').touched && form.get('password').invalid" class="invalid-feedback">
+                  <div *ngIf="form.get('password').errors.required">Password is required</div>
+                  <div *ngIf="form.get('password').errors.minlength">Password must be at least 6 characters</div>
+                </div>
+
+              </div>
+
+              <div class="row justify-content-center">
+                <button type="submit" class="btn btn-info btn-lg" [disabled]="!form.valid">Register</button>
+                <button type="reset" class="btn btn-secondary btn-lg">Reset</button>
+              </div>
+
+          </form>
+
+      </div>
+      <div class="card-footer text-center">
+        <span class="text-muted">
+          Do you have an account? <span class="text-info">Log in</span>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
